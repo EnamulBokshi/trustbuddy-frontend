@@ -1,7 +1,14 @@
 import { MoveRight, Star } from 'lucide-react'
-import React from 'react'
+import React, { useContext } from 'react'
+import {Link} from 'react-router'
+import UserContext from '../contexts/users/userContext'
 
 function Widgets() {
+    const {user} = useContext(UserContext)
+    // const redirect = ()=>{
+    //     if()
+    // }
+
   return (
     <section className='py-5 h-auto bg-neutral-600 px-5 gap-4 flex  mt-28 justify-between'>
         <div  className='w-1/2 gap-4 flex flex-col items-start justify-center'>
@@ -22,10 +29,10 @@ function Widgets() {
             Your Feedback can make a real difference. By sharing your Honest Opinions, You're helping others make informed decisions and encouraging companies to strive for excellence
             
         </p>
-        <button className='text-white bg-gray-500 px-6 py-3 rounded-lg hover:bg-gray-600 self-center'>
+        <Link to= {user? '/writerev':'/login' }className='text-white bg-gray-500 px-6 py-3 rounded-lg hover:bg-gray-600 self-center'>
             Get started
             <MoveRight className='inline'/>
-        </button>
+        </Link>
         </div>
     </section>
   )
