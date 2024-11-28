@@ -55,7 +55,7 @@ function Category() {
 
             </div>
 
-            <div className='mt-10 py-10'>
+            <div className='mt-10 py-24'>
                 <div className='flex flex-col justify-center items-center'>
                     <h1 className='text-6xl py-2 font-serif'>Recent Reviews</h1>
                     <div className='flex gap-2'>
