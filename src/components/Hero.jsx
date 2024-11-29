@@ -15,6 +15,8 @@ import "swiper/css/navigation";
 import "swiper/css/scrollbar";
 import { Star } from "lucide-react";
 import Card from "./Card";
+import SearchBox from "./SearchBox";
+import { motion } from 'framer-motion'
 function Hero({ items }) {
   const progressCircle = useRef(null);
   const progressContent = useRef(null);
@@ -27,66 +29,66 @@ function Hero({ items }) {
         slidesPerView={1}
         autoplay={{
           delay: 5000,
-          disableOnInteraction: false,
+          disableOnInteraction: true,
+          pauseOnMouseEnter: true,
+          playOnMouseLeave: true
         }}
         navigation={true}
         pagination={{ clickable: true }}
         scrollbar={{ draggable: true }}
-        onSwiper={(swiper) => console.log(swiper)}
-        onSlideChange={() => console.log("slide change")}
+        // onSwiper={(swiper) => console.log(swiper)}
+        // onSlideChange={() => console.log("slide change")}
         modules={[Autoplay, Pagination, Navigation]}
+        className="bg-blue-500"
+
       >
-        {items.map((item) => (
-          <SwiperSlide className={`${item.bg}  px-4 py-12  `} key={item.id}>
-            <div className="flex justify-between px-10 items-center py-5 md:gap-48 gap-10">
-              <div className="flex flex-col gap-4">
+        {items.map((item, index) => (
+          <SwiperSlide className={` px-4 py-12  `} key={item.id}>
+            <div className="flex justify-between  px-10 items-center py-5 md:gap-48 gap-10">
+              <motion.div 
+              initial={{
+                opacity:0
+              }}
+              whileInView={{
+                opacity:1,
+                scale:1,
+                transition:{
+                  duration:.5,
+                  
+                }
+              }}
+              viewport={{
+                once:false,
+                amount:"all",
+                
+
+              }}
+              className="flex flex-col gap-4 items-center justify-center">
                 <div className="text-4xl text-neutral-100 text-center">{item.slogan}</div>
                 <div className="flex justify-center py-3">
-                  <input
-                    type="search"
-                    className="rounded-lg px-2 py-1 text-gray-400 bg-neutral-100 w-1/2"
-                    placeholder="search.."
-                  />
+                  <SearchBox />
                 </div>
-              </div>
-              {/* <div className="bg-neutral-200 md:flex flex-col px-4 py-4 gap-4 rounded-lg max-w-96 hidden">
-                <div className="flex gap-2">
-                  {item.card.stars.map((i) => (
-                    <Star className="text-yellow-500" />
-                  ))}
-                </div>
-                <h2>{item.card.review}</h2>
-                <div>
-                  <div className="flex justify-between">
-                    <div className="flex justify-start">
-                      <div className="relative">
-                        <span>{item.card.avg}</span>
-                        <span className="ms-[-20px] bg-blue-600 text-neutral-50">
-                          {item.card.badge}
-                        </span>
-                      </div>
-                      <h2 className=" font-bold">{item.card.user}</h2>
-                    </div>
-                    <h2 className="text-gray-300">{item.card.time}</h2>
-                  </div>
-                  <div>
-                    <div>
-                      <span className="font-bold">
-                        {" "}
-                        Response from the owner.{" "}
-                      </span>{" "}
-                      <span className="text-gray-300 ms-10">
-                        {item.card.ownerResponseDate}
-                      </span>
-                    </div>
-                    <h2>
-                      {`${item.card.ownerResponse}`}
-                      <span className="">{item.card.ownerReact}</span>
-                    </h2>
-                  </div>
-                </div>
-              </div> */}
-              <Card data={item.card}/>
+              </motion.div>
+
+              <motion.div
+              initial={{
+                opacity:0
+              }}
+              whileInView={{
+                opacity:1,
+                scale:1,
+                transition:{
+                  duration:.5,
+                  
+                }
+              }}
+              viewport={{
+                once:true,
+                amount:"all",
+              }}
+              >
+              <Card data={item.card} key={index} />
+              </motion.div>
             </div>
           </SwiperSlide>
         ))}

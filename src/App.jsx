@@ -4,6 +4,10 @@ import WriteRev from './pages/WriteRev.jsx'
 import Login from './pages/Login.jsx'
 import Register from './pages/Register.jsx'
 import ForgetPassword from './pages/ForgetPassword.jsx'
+import Review from './pages/Review.jsx'
+import Contact from './pages/Contact.jsx'
+import Pricing from './pages/Pricing.jsx'
+
 function App() {
   return (
   <BrowserRouter>
@@ -26,6 +30,19 @@ function App() {
     <Route 
     path='/forget-password'
     element = {<ForgetPassword/>}
+    />
+    <Route 
+    path='/review'
+    element = {<Review/>}
+    />
+    <Route 
+
+    path='/contact'
+    element = {<Contact />}
+    />
+    <Route 
+    path='/pricing'
+    element = {<Pricing/>}
     />
       </Routes>
       </BrowserRouter>

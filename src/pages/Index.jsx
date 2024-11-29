@@ -6,6 +6,7 @@ import Reviews from '../components/Reviews'
 import Widgets from '../components/Widgets.jsx'
 import Footer from '../components/Footer'
 import HandsOn from '../components/HandsOn'
+import { FaStar } from "react-icons/fa";
 import React from 'react'
 
 function Index() {
@@ -17,7 +18,7 @@ function Index() {
     
           card : {
             revID : '1213434',
-            stars: [1,2,3,4,5],
+            stars: [<FaStar/>,<FaStar/>,<FaStar/>,<FaStar/>,<FaStar/>],
             review: 'Component Collector has some free components. The rest can be purchased with credits. Claim your free credits when you sign up!',
             avg: <Smile />,
             badge: <BadgeCheck />,
@@ -55,7 +56,7 @@ function Index() {
       ]
   return (
    <>
-   <Nav />
+   <Nav active={'home'}/>
       <header className=''>
         <Hero items = {sliderItems}/>
       </header>

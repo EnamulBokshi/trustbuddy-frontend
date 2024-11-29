@@ -3,7 +3,7 @@ import logo from '../assets/logos/trustbuddy-high-resolution-logo-transparent.pn
 import { Facebook, Instagram, Linkedin, Youtube } from 'lucide-react';
 function Footer() {
   return (
-    <footer className = " flex justify-between py-12 px-5 bg-gray-600 mt-5">
+    <footer className = " flex justify-between py-12 px-5 bg-gray-600 ">
         <div className = 'flex flex-col gap-3'>
             <img src={logo} className='w-12'/>
             <div className='flex gap-2 '>

@@ -1,20 +1,19 @@
 import { Star } from 'lucide-react'
 import React from 'react'
-
+import { FaStar } from "react-icons/fa";
 function Card({
     data = [],
 
     style = ''
 }) {
   return (
-    <div className = {`bg-neutral-200 rounded-lg p-4 flex flex-col gap-3`}>
+    <div className = {`bg-neutral-200 rounded-lg p-4 flex flex-col  gap-3`}>
         <div className='flex flex-wrap gap-2'>
            {
-             data.stars.map((i) => (
-                <Star  key={i} className='text-yellow-500'/>
-             ))
+             data.stars.map((i,index)=>
+                <FaStar className='text-yellow-500' key={index}/>
+            )
            }
-
         </div>
         <h2>
             {

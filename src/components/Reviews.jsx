@@ -1,7 +1,7 @@
 import React from 'react'
 import { Smile,BadgeCheck,ThumbsUp, LucideNavigation} from 'lucide-react'
 import Card from './Card';
-
+import {easeInOut, motion} from 'framer-motion'
 function Reviews() {
     const reviewData = [
        {
@@ -88,7 +88,6 @@ for(const rev in reviewData){
         rev.response.date = "6 days ago"
     }
 }
-console.log(reviewData[1].response)
     const ownerResponse = [
         {
             ownerResponse: "Thanks! We love your response",
@@ -96,13 +95,34 @@ console.log(reviewData[1].response)
             ownerResponseDate: "6 days ago"
         }
     ]
-
   return (
-    <div className='md:px-36 px-5 -mt-28 py-10'>
-        <div className='grid md:grid-cols-2 grid-cols-1 gap-3'>
+    <div className='md:px-36 px-5 -mt-28 py-10 bg-transparent'>
+        <div 
+       
+        
+        className='grid md:grid-cols-2 grid-cols-1 gap-3 backdrop-blur-md  ring-2 ring-slate-50 bg-transparent shadow-xl p-10 rounded-lg '>
             {
                 reviewData.map((data,index) => (
-                    <Card data={data} key={index}/>
+                    <motion.div key={index}
+                    
+                    initial={{
+                        opacity:0
+                      }}
+                      whileInView={{
+                        opacity:1,
+                        scale:1,
+                        transition:{
+                          duration:.4,
+                          ease: 'all'
+                        }
+                      }}
+                      viewport={{
+                        once:true,
+                        amount:"all",
+                      }}
+                    >
+                        <Card data={data} key={index}/>
+                     </motion.div>
                 ))
             }
         </div>
