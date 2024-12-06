@@ -15,7 +15,7 @@ function Input({pholder,title,type = 'text',isReq = true,option = [],error='',va
         {option.map((opt,index) => <option  value={opt.toLowerCase()} key={index}>{opt.toUpperCase()}</option>)}
         </select>
         : 
-        type == 'textarea'? <textarea name={name} onChange={onChange} value={value} placeholder={pholder} className={error? `w-full bg-white py-3 px-2 rounded-lg  text-gray-500 ring-1 ring-red-600`:`w-full bg-white py-3 px-2 rounded-lg  text-gray-500 ring-1 `}> </textarea>:
+        type == 'textarea'? <textarea name={name} onChange={onChange} value={value} placeholder={pholder} className={error? `w-full bg-white py-3 px-2 rounded-lg  text-gray-500 ring-1 ring-red-600`:`w-full bg-white py-3 px-2 rounded-lg  text-gray-500 ring-1 `} required= {isReq}> </textarea>:
 
         <input name={name} onChange={onChange} value={value} placeholder={pholder} type={type} className={error? `w-full bg-white py-3 px-2 rounded-lg  text-gray-500 ring-1 ring-red-600`:`w-full bg-white py-3 px-2 rounded-lg  text-gray-500 ring-1 `}  required = {isReq} />
      

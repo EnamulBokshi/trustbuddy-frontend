@@ -7,9 +7,13 @@ import Widgets from '../components/Widgets.jsx'
 import Footer from '../components/Footer'
 import HandsOn from '../components/HandsOn'
 import { FaStar } from "react-icons/fa";
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useUser } from '../contexts/users/userContext.jsx'
+import { useRev } from '../contexts/reviews/UseRev.jsx'
 
 function Index() {
+  const {reviews,setReviews} = useRev();
+  const {setC_user} = useUser();
     const sliderItems = [
         {
           
@@ -54,6 +58,14 @@ function Index() {
           }
         }
       ]
+  useEffect(()=>{
+    setReviews(JSON.parse(localStorage.getItem("reviews")));
+    const user = JSON.parse(localStorage.getItem("LoggedUser"));
+    if(!user){
+      setC_user(user);
+    }
+
+  },[])
   return (
    <>
    <Nav active={'home'}/>

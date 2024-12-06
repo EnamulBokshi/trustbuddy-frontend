@@ -1,13 +1,14 @@
-import React, { useContext, useRef, useState } from 'react'
-import UserContext from '../contexts/users/userContext';
+import React, {useEffect, useRef, useState } from 'react';
 import Footer from '../components/Footer';
 import Nav from '../components/Nav';
 import Input from '../components/Forms/Input'
-import { Link,Navigate } from 'react-router'
+import { Link,Navigate,useNavigate } from 'react-router'
 import {ToastContainer,toast,Bounce} from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css"
+import { useUser } from '../contexts/users/userContext';
 function Register() {
-    const { user, setUser } = useContext(UserContext);
+    const navigate = useNavigate();
+    const {user,setUser,setIsLoggedIn} = useUser();
     const [name,setName] = useState('');
     const [email, setEmail] = useState('')
     const [username, setUsername] = useState('')
@@ -24,20 +25,9 @@ function Register() {
             setConfirmPassword('')
             return;
         }
-        setUser({name:name,username:username,email : email,phone : phone,password : password})
-        // const data =new FormData();
-        // data.append(name)
-        setUserData(
-            ...userData,
-            name,
-            username,
-            email,
-            phone,
-            password
-        )
-        localStorage.setItem(user,userData)
-
-        console.log(userData)
+        setUser((user)=> [...user,{name,username,email,phone,password}]);
+        // localStorage.setItem('user',JSON.stringify(user.find(crUser => crUser.username == username)))
+        console.log(user);
         setName('');
         setEmail('');
         setUsername('');
@@ -55,8 +45,12 @@ function Register() {
             theme: "light",
             transition: Bounce,
             }); 
-            return <Navigate to='/'/>
+           navigate('/')
     }
+    useEffect(()=>{
+        localStorage.setItem('users',JSON.stringify(user))
+    },[user])
+
     return (
         <>
             <Nav />
@@ -83,7 +77,7 @@ function Register() {
                         {/* End of submit button */}
                         <div className='flex justify-evenly'>
                             <p>
-                                Already have an account? <Link to={'/login'} className='text-violet-600 italic underline font-bold'>Sign Up</Link>
+                                Already have an account? <Link to={'/login'} className='text-violet-600 italic underline font-bold'>Sign In</Link>
                             </p>
                             <p>
 
