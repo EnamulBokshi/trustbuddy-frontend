@@ -1,6 +1,7 @@
 import React from 'react'
 import { Smile,BadgeCheck,ThumbsUp, LucideNavigation} from 'lucide-react'
 import Card from './Card';
+import {Link} from 'react-router'
 import {easeInOut, motion} from 'framer-motion'
 function Reviews() {
     const reviewData = [
@@ -96,6 +97,7 @@ for(const rev in reviewData){
         }
     ]
   return (
+    
     <div className='md:px-36 px-5 -mt-28 py-10 bg-transparent'>
         <div 
        
@@ -128,7 +130,9 @@ for(const rev in reviewData){
         </div>
         <div className='flex justify-center pt-10'>
             <button className='py-3 w-1/2 bg-slate-500 rounded-lg text-neutral-50 hover:bg-slate-700 hover:ring-2 ring-sky-200'>
-                Show all <LucideNavigation className='inline'/>
+               <Link to={'/review'}>
+               Show all <LucideNavigation className='inline'/>
+               </Link>
             </button>
         </div>
     </div>

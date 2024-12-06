@@ -1,7 +1,9 @@
 import { ChevronRight, Plane, Star, StarHalfIcon, StarOff } from 'lucide-react'
-import React from 'react'
-
+import React,{useState} from 'react'
+import category from '../utils/constants.jsx'
+import CategoryCard from './CategoryCard.jsx';
 function Category() {
+    const [categories,setCategories] = useState([])
   return (
     <>
         <section className='py-10 px-5 bg-gray-300'>
@@ -10,49 +12,13 @@ function Category() {
             <button className='px-6 py-2 rounded-lg bg-gray-700 hover:bg-gray-800 text-neutral-200 hover:ring-2'>View All <ChevronRight className='inline rounded-full bg-gray-200 hover:ring-2 text-violet-600 ms-3'/></button>
             </div>
             <div className='grid py-5  grid-cols-4 md:grid-cols-5 gap-3'>
-                <div className='px-5 py-3 bg-neutral-100 flex justify-center hover:ring-2 rounded-lg cursor-pointer'>
-                    <span>
-                    <Plane className='inline'/>
-                    </span>
-                    <span>Travels</span>
-                </div>
-                <div className='px-5 py-3 bg-neutral-100 flex justify-center hover:ring-2 rounded-lg cursor-pointer'>
-                    <span>
-                    <Plane className='inline'/>
-                    </span>
-                    <span>Travels</span>
-                </div>
-                <div className='px-5 py-3 bg-neutral-100 flex justify-center hover:ring-2 rounded-lg cursor-pointer'>
-                    <span>
-                    <Plane className='inline'/>
-                    </span>
-                    <span>Travels</span>
-                </div>
-                <div className='px-5 py-3 bg-neutral-100 flex justify-center hover:ring-2 rounded-lg cursor-pointer'>
-                    <span>
-                    <Plane className='inline'/>
-                    </span>
-                    <span>Travels</span>
-                </div>
-                <div className='px-5 py-3 bg-neutral-100 flex justify-center hover:ring-2 rounded-lg cursor-pointer'>
-                    <span>
-                    <Plane className='inline'/>
-                    </span>
-                    <span>Travels</span>
-                </div>
-                <div className='px-5 py-3 bg-neutral-100 flex justify-center hover:ring-2 rounded-lg cursor-pointer'>
-                    <span>
-                    <Plane className='inline'/>
-                    </span>
-                    <span>Travels</span>
-                </div>
-                <div className='px-5 py-3 bg-neutral-100 flex justify-center hover:ring-2 rounded-lg cursor-pointer'>
-                    <span>
-                    <Plane className='inline'/>
-                    </span>
-                    <span>Travels</span>
-                </div>
-
+               
+  
+                {
+                    category.map((c) =>
+                        <CategoryCard category = {c} key ={c.id}/>
+                    )
+                }
             </div>
 
             <div className='mt-10 py-24'>
