@@ -10,30 +10,19 @@ import Pricing from './pages/Pricing.jsx'
 import { useUser } from './contexts/users/userContext.jsx'
 import { useEffect } from 'react'
 import RevProvider from './contexts/reviews/UseRev.jsx'
-import Dashboard from './pages/Dashboard.jsx'
+import Dashboard from './pages/Dashboard.jsx';
+import NotificationProvider from './contexts/notification/NotificationContext.jsx'
+import DashboardProvider from './contexts/dashboard/DashboardContext.jsx'
+import UserProfile from './pages/UserProfile.jsx'
+import CategoryView from './pages/CategoryView.jsx'
+import CategoryProvider from './contexts/catrgory/CategoryContext.jsx'
 function App() {
-  const {user} = useUser();
-  // const [reviews, setReviews] = useState([]);
-  // const [responses,setResponses] = useState([]);
-  // // Funtionality of Review context
-  // const addRev = (rev)=>{
-  //   setReviews((prevRev)=> [{id:uuid,...rev},...prevRev])
-  // }
-  // const updateRev = (id,rev)=>{
-  //   setReviews((preRev) => preRev.map((item)=> item.id === id ? rev : item))
-  // }
-  // const deleteRev = (id) =>{
-  //   setReviews((preRev) => preRev.filter((item) => item.id !== id ))
-  // }
-  // const addResponse = (response) =>{
-  //   setResponses((preRes)=> [{id:uuid,...response},...preRes])
-  // }
-// useEffect(()=>{
-
-// },[user]);
   return (
     <BrowserRouter>
      <RevProvider>
+      <NotificationProvider>
+        <CategoryProvider>
+        <DashboardProvider >
         <Routes>
           <Route path='/' element={<Index />} />
           <Route path='/writerev' element={<WriteRev />} />
@@ -70,7 +59,18 @@ function App() {
             path='/dashboard'
             element = {<Dashboard />}
           />
+          <Route 
+            path='/user-details/:userID' 
+            element = {<UserProfile />}
+          />
+          <Route 
+            path='/review/:category' 
+            element = {<CategoryView/>}
+          />
         </Routes>
+        </DashboardProvider>
+        </CategoryProvider>
+        </NotificationProvider>
         </RevProvider>
     </BrowserRouter>
   )

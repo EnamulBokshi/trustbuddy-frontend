@@ -6,13 +6,14 @@ import { MdOutlineViewSidebar, MdPersonSearch } from "react-icons/md";
 import UserProfile from '../components/user/UserProfile';
 import Sidebar from '../components/Sidebar';
 import { IoHome } from "react-icons/io5";
+import { useDashoboard } from '../contexts/dashboard/DashboardContext';
 
 function Dashboard() {
+  const {activeSection} = useDashoboard();
+  // console.log(activeSection)
   const navigate = useNavigate();
   const {c_user} = useUser();
-
   const [user,setUser] = useState([])
-
   if(!user) {
     navigate('/login')
   }
@@ -42,12 +43,15 @@ function Dashboard() {
             <MdPersonSearch className='absolute top-2 left-2 text-2xl text-gray-500'/>
           </div>
           </div>
-          <div class="bg-gradient-to-r from-pink-500 via-purple-500 to-gray-200 py-8 rounded-lg"></div>
+          <div className="bg-gradient-to-r from-pink-500 via-purple-500 to-gray-200 py-8 rounded-lg"></div>
         </div>
 
         {/* Actual display appears here */}
-        <div className='mt-10'>
-          <UserProfile user={user} />
+        <div className='mt-10 '>
+          {
+          
+          activeSection == 'setting' && <UserProfile user={user} />
+          }
         </div>
       </div>
    </section>
