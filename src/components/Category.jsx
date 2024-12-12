@@ -2,8 +2,10 @@ import { ChevronRight, Plane, Star, StarHalfIcon, StarOff } from 'lucide-react'
 import React,{useState} from 'react'
 import category from '../utils/constants.jsx'
 import CategoryCard from './CategoryCard.jsx';
+import { useCategory } from '../contexts/catrgory/CategoryContext.jsx';
 function Category() {
-    const [categories,setCategories] = useState([])
+    const {categories} = useCategory();
+    // const [categories,setCategories] = useState([])
   return (
     <>
         <section className='py-10 px-5 bg-gray-300'>
@@ -15,7 +17,7 @@ function Category() {
                
   
                 {
-                    category.map((c) =>
+                    categories.map((c) =>
                         <CategoryCard category = {c} key ={c.id}/>
                     )
                 }

@@ -6,9 +6,11 @@ import Input from '../components/Forms/Input';
 import { Star } from 'lucide-react';
 import {useRev} from '../contexts/reviews/UseRev';
 import { useUser } from '../contexts/users/userContext';
+import { useNotif } from '../contexts/notification/NotificationContext';
 function WriteRev() {
   const {c_user} = useUser();
   const navigate = useNavigate();
+  const {count,setCount} = useNotif();
   if(!c_user) {
     navigate('/login');
   }
@@ -28,7 +30,8 @@ function WriteRev() {
     setReviews((reviews) => [...reviews,{revId:ID,productID:id,title,category,productLink,description,totalStar,user:c_user,response:{}}]);
     setMsg('Submitted the review');
     setLocalReviews(()=>[...localReviews,{revId:ID,productID:id,title,category,productLink,description,totalStar,user:c_user,response:{}}])
-    localStorage.setItem("reviews",JSON.stringify(reviews))
+    localStorage.setItem("reviews",JSON.stringify(reviews));
+    setCount((prev)=>prev+1)
   }
   console.log(...reviews)
   const startFill = 'rounded-sm bg-violet-500 text-gray-200'
