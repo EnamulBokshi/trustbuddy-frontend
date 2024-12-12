@@ -1,7 +1,11 @@
 # Trust Buddy Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the template of Trust buddy application. 
 
+# Technologies has been used
+- React as a foundation framework
+- TailwindCss as CSS framework
+- React-routing,context API, React-icons, Lucide-react and some other plugins also used
 
 
 Currently, two official plugins are available:
