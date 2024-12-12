@@ -3,15 +3,15 @@ import Nav from '../components/Nav'
 import Footer from '../components/Footer';
 import { useRev } from '../contexts/reviews/UseRev';
 import CommentCard from '../components/CommentCard';
-// import {useRev,RevProvider,RevContext} from '../contexts/reviews/UseRev'
-import category from '../utils/constants';
-
 import CustomRevCard from '../components/CustomRevCard';
 import SearchBox from '../components/SearchBox';
 import { useCategory } from '../contexts/catrgory/CategoryContext';
+import { useUser } from '../contexts/users/userContext';
 
 
 function Review() {
+  const {c_user} = useUser();
+  console.log("Current User: ",c_user)
   const{categories} = useCategory();
   const {reviews,demoReviews,addReview,addComment} = useRev();
   const review = {
@@ -48,17 +48,20 @@ const addNewComment = (reviewId)=>{
 const showComment = (comment)=>{
   console.log(comment)
 }
+
+// Stars Counter
 const createStars = (stars)=>{
   const arr = [...Array(stars).keys()];
   return arr
 }
 
+
+// Searching Reviews
 const handleSearch = (e)=>{
   const value = e.target.value
   setSearchValue(value)
   setReviewShow(reviews.filter(rev => rev.title.toLowerCase().includes(searchValue.toLowerCase())))
 }
-
 useEffect(()=>{
   if(currentCategory == 'all'){
     setReviewShow(reviews)
@@ -75,10 +78,9 @@ useEffect(()=>{
         <section className='flex justify-between items-center px-5 py-10 '>
             <div className='w-1/2 '>
               <select name="category" id="category" className='px-3 py-2 rounded-lg bg-violet-700 text-white' onChange={(e)=>setCurrentCategory(e.target.value)} >
-                <option value="all">Select Category</option>
                 <option value="all">All</option>
                 {categories.map((item,index)=>(
-                  <option value={item.name} key={item.id}>{item.name} {item.icon} </option>
+                  <option value={item.name} key={item.id}>{item.name}</option>
                 ))}
               </select>
             </div>
@@ -93,7 +95,7 @@ useEffect(()=>{
                 <CustomRevCard rev={rev} key={rev.id}/>
               ))
               :
-              <p>No Reviews</p>
+              <p className='text-center text-2xl text-teal-400'>No Reviews ... </p>
             }
           </div>
         </section>

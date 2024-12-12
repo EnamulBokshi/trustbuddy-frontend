@@ -24,7 +24,7 @@ function Dashboard() {
    <>
    <header className='sticky top-0 z-10'>
     <nav className='flex justify-between items-center py-3 px-6 bg-black/30'>
-      <span className='cursor-pointer'><IoHome className='text-3xl'/></span>
+      <Link to={'/'} className='cursor-pointer'><IoHome className='text-3xl'/></Link>
       <ProfileCard username={user.username} classNames='cursor-pointer' />
     </nav>
    </header>

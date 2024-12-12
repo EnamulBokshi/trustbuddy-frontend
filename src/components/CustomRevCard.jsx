@@ -10,7 +10,6 @@ function CustomRevCard({rev}) {
         const arr = [...Array(stars).keys()];
         return arr
       }
-
   return (
     <div>
         <article className='p-4 flex flex-col hover:ring-1 gap-y-5 rounded-lg hover:scale-105 duration-300 bg-gray-700' key={rev.id}>

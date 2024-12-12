@@ -11,7 +11,7 @@ function Nav({active}) {
         setMenuToggle(!menuToggle)
     }
     const[showProfileCard,setShowProfileCard] = useState(false);
-    const [c_user,setC_user] = useState([]) 
+    const {c_user,setC_user} = useUser();
     const home = useRef(null);
     const review = useRef(null);
     const pricing = useRef(null);
@@ -44,7 +44,7 @@ function Nav({active}) {
     <>
     <nav className='py-5 px-6 bg-gray-500 flex justify-between items-center'>
         <img src={Logo} alt="Logo" className='w-10 h-10' />
-        <div className='gap-8 justify-end hidden md:flex'>
+        <div className='gap-8 justify-end hidden md:flex items-center'>
            
             <ul className='p-0 m-0 flex items-center gap-3'>
                 <Link ref={home} to={'/'} className='px-3 py-2  hover:text-white cursor-pointer  hover:ring-teal-200 hover:bg-gray-700 rounded text-neutral-100'>Home</Link>
