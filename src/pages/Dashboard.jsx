@@ -12,9 +12,9 @@ function Dashboard() {
   const {activeSection} = useDashoboard();
   // console.log(activeSection)
   const navigate = useNavigate();
-  const {c_user} = useUser();
+  const {c_user,setC_user} = useUser();
   const [user,setUser] = useState([])
-  if(!user) {
+  if(!c_user) {
     navigate('/login')
   }
   useEffect(()=>{
@@ -50,7 +50,7 @@ function Dashboard() {
         <div className='mt-10 '>
           {
           
-          activeSection == 'setting' && <UserProfile user={user} />
+          activeSection == 'setting' && <UserProfile user={c_user} />
           }
         </div>
       </div>

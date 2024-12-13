@@ -89,13 +89,7 @@ function Nav({active}) {
         </div>
     }
   {
-    // showProfileCard && <div className='w-60 absolute top-5 z-10 right-4 px-3 py-3 bg-gray-700 rounded-lg '>
-    //      <X onClick={()=>{setShowProfileCard(!showProfileCard)}} className='text-red-950 hover:text-red-900 cursor-pointer'/>
-    //     <h1>
-    //         {user?.username}
-    //     </h1>
-    // </div>
-    showProfileCard && <UserModal user={c_user}/>
+    showProfileCard && <UserModal user={c_user} onClick={()=>setShowProfileCard(false)}/>
   }
     </>
   )

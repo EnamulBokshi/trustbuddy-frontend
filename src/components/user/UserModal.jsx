@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router'
 import { FaChevronRight } from "react-icons/fa";
-function UserModal({user,classNames = ''}) {
+function UserModal({user,classNames = '',onClick}) {
   const LogOut = ()=>{
     localStorage.removeItem("LoggedUser");
     window.location.reload()
@@ -16,7 +16,7 @@ function UserModal({user,classNames = ''}) {
         <button className='px-4 py-2 bg-neutral-400 hover:translate-x-2  duration-300'>Setting</button>
         <button className='px-3 py-2 bg-gray-300 hover:translate-x-2  duration-300' onClick={LogOut}>Logout</button>
         <button className='px-3 py-2  bg-gray-300 hover:translate-x-2  duration-300'>Dashboard</button>
-        <button className='px-3 py-2 text-white bg-red-700 hover:translate-x-2  duration-300'>Close</button>
+        <button onClick={onClick} className='px-3 py-2 text-white bg-red-700 hover:translate-x-2  duration-300'>Close</button>
       </div>
     </div>
   )
