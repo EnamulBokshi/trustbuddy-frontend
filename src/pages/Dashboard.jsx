@@ -12,9 +12,9 @@ function Dashboard() {
   const {activeSection} = useDashoboard();
   // console.log(activeSection)
   const navigate = useNavigate();
-  const {c_user} = useUser();
+  const {c_user,setC_user} = useUser();
   const [user,setUser] = useState([])
-  if(!user) {
+  if(!c_user) {
     navigate('/login')
   }
   useEffect(()=>{
@@ -24,7 +24,7 @@ function Dashboard() {
    <>
    <header className='sticky top-0 z-10'>
     <nav className='flex justify-between items-center py-3 px-6 bg-black/30'>
-      <span className='cursor-pointer'><IoHome className='text-3xl'/></span>
+      <Link to={'/'} className='cursor-pointer'><IoHome className='text-3xl'/></Link>
       <ProfileCard username={user.username} classNames='cursor-pointer' />
     </nav>
    </header>
@@ -50,7 +50,7 @@ function Dashboard() {
         <div className='mt-10 '>
           {
           
-          activeSection == 'setting' && <UserProfile user={user} />
+          activeSection == 'setting' && <UserProfile user={c_user} />
           }
         </div>
       </div>

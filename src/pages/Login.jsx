@@ -39,7 +39,7 @@ function Login() {
                 navigate('/')
         }
         else {
-            setErrorMsg("Wront username or password!")
+            setErrorMsg("Wron username or password!")
         }
 
     }

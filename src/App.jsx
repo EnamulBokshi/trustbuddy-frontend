@@ -17,6 +17,13 @@ import UserProfile from './pages/UserProfile.jsx'
 import CategoryView from './pages/CategoryView.jsx'
 import CategoryProvider from './contexts/catrgory/CategoryContext.jsx'
 function App() {
+
+  const {user,c_user,setC_user} = useUser();
+
+  useEffect(()=>{
+    setC_user(JSON.parse(localStorage.getItem("LoggedUser")))
+  },[user]);
+  
   return (
     <BrowserRouter>
      <RevProvider>

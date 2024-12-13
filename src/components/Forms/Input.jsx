@@ -1,13 +1,15 @@
 import React from 'react'
 
-function Input({pholder,title,type = 'text',isReq = true,option = [],error='',value='',onChange,name}) {
+function Input({pholder, css='',title,type = 'text',isReq = false,option = [],error='',value='',onChange,name}) {
+  const defaultCss = 'text-gray-500 hover:text-gray-700';
   return (
-  <div>
-    <label className='text-gray-500 py-0 my-0 font-bold  hover:text-gray-700'>
-        {title}
+  <div className='relative'>
+    <label className={css != ''? css:defaultCss + ` py-0 my-0 font-bold`}>
+        {title} 
+        {isReq && <span className='text-red-700  absolute top-[-10px]'>*</span>}
     </label>
     {
-      error&&<label className='text-red-600'>{error}</label>
+      error&&<label className='text-red-600 absolute bg-white/30 px-2 py-2 duration-300 translate-x-1 left-[-20px] bottom-[-30px] rounded-lg ms-2 ' >{error}</label>
     }
     {   
         type == 'select' ? 
