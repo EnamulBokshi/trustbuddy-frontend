@@ -49,7 +49,7 @@ function Nav({active}) {
             <ul className='p-0 m-0 flex items-center gap-3'>
                 <Link ref={home} to={'/'} className='px-3 py-2  hover:text-white cursor-pointer  hover:ring-teal-200 hover:bg-gray-700 rounded text-neutral-100'>Home</Link>
                 <Link ref={review} to= {'/review'} className='px-3 py-2  hover:text-white cursor-pointer  hover:ring-teal-200 hover:bg-gray-700 rounded text-neutral-100'>Reviews</Link>
-                <Link ref={pricing} to={'/pricing'} className='px-3 py-2  hover:text-white cursor-pointer  hover:ring-teal-200 hover:bg-gray-700 rounded text-neutral-100'>Subscription</Link>
+                {/* <Link ref={pricing} to={'/pricing'} className='px-3 py-2  hover:text-white cursor-pointer  hover:ring-teal-200 hover:bg-gray-700 rounded text-neutral-100'>Premium</Link> */}
                 <Link ref={contact} to = {'/contact'} className='px-3 py-2  hover:text-white cursor-pointer  hover:ring-teal-200 hover:bg-gray-700 rounded text-neutral-100'>Contact Us</Link>
                 {c_user? 
                 <Link ref={writeRev} to = {'/writeRev'} className='px-3 py-2  hover:text-white cursor-pointer  hover:ring-teal-200 hover:bg-gray-700 rounded text-neutral-100'>Wrtie Review</Link>
@@ -76,16 +76,21 @@ function Nav({active}) {
         menuToggle && <div className='flex flex-col py-8  items-center gap-4 bg-gray-500 border-t'>
             <Link to ={'/'}className='px-3 py-2   hover:text-green-600 cursor-pointer  text-neutral-100'>Home</Link>
                 <Link to ={'/reviews'}className='px-3 py-2   hover:text-green-600 cursor-pointer text-neutral-100'>Reviews</Link>
-                <Link to ={'/pricing'}className='px-3 py-2  hover:text-green-600 cursor-pointer text-neutral-100'>Subscription</Link>
+                {/* <Link to ={'/pricing'}className='px-3 py-2  hover:text-green-600 cursor-pointer text-neutral-100'>Subscription</Link> */}
                 <Link to ={'/contact'}className='px-3 py-2   hover:text-green-600 cursor-pointer text-neutral-100'>Contact</Link>
-                <div>
-                <Link to={'/login'} className='px-6 py-2 bg-violet-500 hover:bg-violet-600 rounded-lg text-neutral-100 font-serif me-3'>Sin In</Link>
-                <Link to={'/register'} className='px-6 py-2 bg-sky-500 hover:bg-sky-600 rounded-lg text-neutral-100 font-serif'>Register</Link>
+                
                 {c_user? 
                 <Link ref={writeRev} to = {'/writeRev'} className='px-3 py-2  hover:text-white cursor-pointer  hover:ring-teal-200 hover:bg-gray-700 rounded text-neutral-100'>Wrtie Review</Link>
                     : null
-            }
+                }
+                
+                {
+                c_user? <ProfileCard username={c_user.username} onClick={()=>setShowProfileCard(!showProfileCard)}/>:
+                <div>
+                <Link to={'/login'} className='px-6 py-2 bg-violet-500 hover:bg-violet-600 rounded-lg text-neutral-100 font-serif me-3'>Sin In</Link>
+                <Link to={'/register'} className='px-6 py-2 bg-sky-500 hover:bg-sky-600 rounded-lg text-neutral-100 font-serif'>Register</Link>
             </div>
+            }
         </div>
     }
   {
