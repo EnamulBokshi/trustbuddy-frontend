@@ -15,6 +15,7 @@ export default function UserProvider  ({children}){
     const [ c_user,setC_user] = useState([]);
     const [takenUsername,setTakenUsername] = useState(usernames);
     const[isLoggedIn,setIsLoggedIn] = useState(false);
+
     const updateUser = (id,updateUser)=>{
         setUser(user.map(u=>{
             if(u.id == id){
@@ -23,9 +24,16 @@ export default function UserProvider  ({children}){
             return u
         }))
     }
-    // const finUser = (i)
+    const findUser = (id)=>{
+        const searchedUser = user.filter(u =>{
+            if (u.id == id) {
+                return u
+            }
+        })
+        return searchedUser;
+    }
         return(
-            <UserContext.Provider value={{updateUser,user,setUser,isLoggedIn,takenUsername,setTakenUsername,setIsLoggedIn,c_user,setC_user}}>
+            <UserContext.Provider value={{updateUser,user,setUser,isLoggedIn,takenUsername,setTakenUsername,setIsLoggedIn,c_user,setC_user,findUser}}>
                 {children}
             </UserContext.Provider>
         )
