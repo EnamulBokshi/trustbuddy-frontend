@@ -7,6 +7,7 @@ import { Star } from 'lucide-react';
 import {useRev} from '../contexts/reviews/UseRev';
 import { useUser } from '../contexts/users/userContext';
 import { useNotif } from '../contexts/notification/NotificationContext';
+import { useCategory } from '../contexts/catrgory/CategoryContext';
 function WriteRev() {
   const {c_user} = useUser();
   const navigate = useNavigate();
@@ -15,29 +16,47 @@ function WriteRev() {
     navigate('/login');
   }
   const {reviews,setReviews,responses,setResponses} = useRev();
+  const {categories} = useCategory();
   const ID = useId();
   // Review Form data collection
   const [title,setTitle] = useState('');
   const [id,setId] = useState('')
   const [category,setCategory] = useState('')
-  const [productLink ,setProductLink] = useState('')
+  const [productImage ,setProductImage] = useState('')
   const [description,setDescription] = useState('');
   const [totalStar,setTotalStar] = useState(1);
   const[msg,setMsg] = useState('');
   const [localReviews,setLocalReviews] = useState([])
+  const today = new Date()
+  const formattedDate = today.toLocaleDateString('en-US', {
+    weekday: 'short',
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  });
   const handleSubmit = (e)=>{
     e.preventDefault(); 
-    setReviews((reviews) => [...reviews,{revId:ID,productID:id,title,category,productLink,description,totalStar,user:c_user,response:{}}]);
+    setReviews((reviews) => [{id:ID,title,category,date:formattedDate,img:productImage,review:description,rating: totalStar,user:c_user,comments:[],likes:0},...reviews]);
     setMsg('Submitted the review');
-    setLocalReviews(()=>[...localReviews,{revId:ID,productID:id,title,category,productLink,description,totalStar,user:c_user,response:{}}])
+    setLocalReviews(()=>[{id:ID,title,category,date:formattedDate,img:productImage,review:description,rating: totalStar,user:c_user,comments:[],likes:0},...localReviews])
     localStorage.setItem("reviews",JSON.stringify(reviews));
     setCount((prev)=>prev+1)
   }
-  console.log(...reviews)
+  const [categoriesName,setCategoriesName] = useState([])
+  const storredReview = JSON.parse(localStorage.getItem('reviews'))
+  
+  console.log(storredReview)
   const startFill = 'rounded-sm bg-violet-500 text-gray-200'
   useEffect(()=>{
-    localStorage.setItem('reviews',JSON.stringify(reviews));
-},[reviews])
+    setReviews(storredReview)
+    // localStorage.setItem('reviews',JSON.stringify(reviews));
+},[localReviews])
+
+useEffect(()=>{
+  const names = []
+  categories.map(c=> names.push(c.name))
+  setCategoriesName(names)
+},[])
   return (
 <>
     <Nav active={'writerev'}/>
@@ -51,14 +70,44 @@ function WriteRev() {
           <div className='p-10 rounded-lg  bg-gray-200 container mx-auto'>
             <div>
               <form onSubmit={handleSubmit} >
-                <div className=' grid grid-cols-1 gap-x-10 gap-y-2 sm:grid-cols-2'>
-                  <Input value={title} onChange={(e)=>setTitle(e.target.value)} title={"PRODUCT TITLE"} pholder={"product title"} type={'text'}/>
-                  <Input value = {id} onChange={(e)=>setId(e.target.value)} title={"PRODUCT ID"} pholder={"ID"} type={'text'}/>
+                <div className=' grid grid-cols-1 gap-x-10 gap-y-4 sm:grid-cols-2'>
+                  <Input 
+                  value={title} 
+                  onChange={(e)=>setTitle(e.target.value)} 
+                  title={"PRODUCT TITLE"} 
+                  pholder={"product title"} 
+                  type={'text'}
+                  isReq
+                  />
+                  <Input 
+                  value = {id} 
+                  onChange={(e)=>setId(e.target.value)} 
+                  title={"PRODUCT ID"} 
+                  pholder={"ID"} 
+                  type={'text'}
+                  isReq
+                  />
                                     
-                  <Input value={category} onChange={(e)=>setCategory(e.target.value)} title={"SELECT CATEGORY"} pholder={"product title"} type='select'  option={['Electonics','Airplane','Travel','Agency','Gadgests','Companies','Banks','Books','Cosmetics']}/>
-                  <Input value={productLink} onChange={(e)=>setProductLink(e.target.value)} title={"PRODUCT LINK"} pholder={"link"} type={'text'} isReq={false}/>
+                  <Input 
+                  value={category} 
+                  onChange={(e)=>setCategory(e.target.value)} 
+                  title={"SELECT CATEGORY"} 
+                  pholder={"product title"} 
+                  type='select'  
+                  option={categoriesName}
+                  isReq
+                  />
+                  <Input 
+                  value={productImage} 
+                  onChange={(e)=>setProductImage(e.target.value)} 
+                  title={"PRODUCT PHOTO LINK"} 
+                  pholder={"link"} 
+                  type={'text'} 
+                  isReq={false}
+                 
+                  />
                   
-                  <Input  value={description} onChange={(e)=>setDescription(e.target.value)} title={"DESCRIPTION"} pholder={"description"} type='textarea'/>
+                  <Input  value={description} onChange={(e)=>setDescription(e.target.value)} title={"DESCRIPTION"} pholder={"description"} type='textarea' isReq/>
                   <div className='py-2'>
                     <label className='text-gray-500 py-0 my-0 font-bold  hover:text-gray-700'>Rating: {totalStar}.0</label>
                     <div className='flex gap-2 py-1'>
