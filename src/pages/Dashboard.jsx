@@ -4,13 +4,15 @@ import {useNavigate,Link} from 'react-router'
 import ProfileCard from '../components/ProfileCard';
 import { MdOutlineViewSidebar, MdPersonSearch } from "react-icons/md";
 import UserProfile from '../components/user/UserProfile';
+import RevConrol from '../components/user/RevControl';
 import Sidebar from '../components/Sidebar';
 import { IoHome } from "react-icons/io5";
 import { useDashoboard } from '../contexts/dashboard/DashboardContext';
+import UserStats from '../components/user/UserStats';
+import UserDetails from '../components/user/UserDetails';
 
 function Dashboard() {
   const {activeSection} = useDashoboard();
-  // console.log(activeSection)
   const navigate = useNavigate();
   const {c_user,setC_user} = useUser();
   const [user,setUser] = useState([])
@@ -51,12 +53,22 @@ function Dashboard() {
           {
           
           activeSection == 'setting' && <UserProfile user={c_user} />
+          
           }
+          {
+            activeSection == 'review' && <RevConrol />
+          }
+          {
+            activeSection == 'home' && <UserStats />
+          }
+          {
+            activeSection == 'profile' && <UserDetails />
+          }
+
         </div>
       </div>
    </section>
     </>
   )
 }
-
 export default Dashboard

@@ -9,7 +9,7 @@ import Contact from './pages/Contact.jsx'
 import Pricing from './pages/Pricing.jsx'
 import { useUser } from './contexts/users/userContext.jsx'
 import { useEffect } from 'react'
-import RevProvider from './contexts/reviews/UseRev.jsx'
+import RevProvider, { useRev } from './contexts/reviews/UseRev.jsx'
 import Dashboard from './pages/Dashboard.jsx';
 import NotificationProvider from './contexts/notification/NotificationContext.jsx'
 import DashboardProvider from './contexts/dashboard/DashboardContext.jsx'
@@ -17,11 +17,13 @@ import UserProfile from './pages/UserProfile.jsx'
 import CategoryView from './pages/CategoryView.jsx'
 import CategoryProvider from './contexts/catrgory/CategoryContext.jsx'
 function App() {
-
   const {user,c_user,setC_user} = useUser();
-
+  // const {reviews,setReviews} = useRev();
+  // const sotredReviews = JSON.parse(localStorage.getItem('reviews'));
   useEffect(()=>{
     setC_user(JSON.parse(localStorage.getItem("LoggedUser")))
+
+    // setReviews(sotredReviews)
   },[user]);
   
   return (

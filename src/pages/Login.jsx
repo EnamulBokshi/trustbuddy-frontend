@@ -41,7 +41,6 @@ function Login() {
         else {
             setErrorMsg("Wron username or password!")
         }
-
     }
     useEffect(()=>{
         localStorage.setItem("currenUser",JSON.stringify(currentUser));

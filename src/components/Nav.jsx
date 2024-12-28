@@ -5,6 +5,7 @@ import {Link} from 'react-router'
 import { useUser } from '../contexts/users/userContext'
 import ProfileCard from './ProfileCard'
 import UserModal from './user/UserModal'
+// Nav Component
 function Nav({active}) {
     const [menuToggle,setMenuToggle] = useState(false)
     const toggle = ()=>{

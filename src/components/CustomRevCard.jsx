@@ -1,10 +1,10 @@
-import React, { useEffect,useState } from 'react'
-import {Navigate,Link, useNavigate} from 'react-router';
+import React, { useEffect, useState } from 'react'
+import { Navigate, Link, useNavigate } from 'react-router';
 import { FaUser } from 'react-icons/fa6';
 import { SlLike } from "react-icons/sl";
 import { AiOutlineLike, AiFillLike } from "react-icons/ai";
 import category from '../utils/constants';
-import { FaStar, FaWindowClose, FaThumbsUp, FaCommentAlt,FaComment  } from "react-icons/fa";
+import { FaStar, FaWindowClose, FaThumbsUp, FaCommentAlt, FaComment } from "react-icons/fa";
 import { useUser } from '../contexts/users/userContext';
 
 function CustomRevCard({ rev }) {
@@ -14,12 +14,12 @@ function CustomRevCard({ rev }) {
     return arr
   }
   const navigate = useNavigate()
-  const {c_user} = useUser();
+  const { c_user } = useUser();
   const [likes, setLikes] = useState(rev?.likes || 0); // Initial likes from `rev`
   const [hasLiked, setHasLiked] = useState(false);
   const [commentInput, setCommentInput] = useState("");
   const [comments, setComments] = useState(rev?.comments || []); // Initial comments from `rev`
-  const [showLogin,setShowLogin] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
   const handleLike = () => {
     if (!hasLiked) {
       setLikes(likes + 1);
@@ -30,11 +30,11 @@ function CustomRevCard({ rev }) {
   };
 
   const handleCommentSubmit = () => {
-    if(!c_user){
+    if (!c_user) {
       navigate('/login')
     }
     if (commentInput.trim()) {
-      setComments([...comments, { user: c_user.username, text: commentInput }]); 
+      setComments([...comments, { user: c_user.username, text: commentInput }]);
       setCommentInput(""); // Clear input
     }
   };
@@ -46,7 +46,7 @@ function CustomRevCard({ rev }) {
       document.body.classList.remove("overflow-hidden");
     }
     return () => {
-      document.body.classList.remove("overflow-hidden"); 
+      document.body.classList.remove("overflow-hidden");
     };
   }, [displayReview]);
   return (
@@ -144,9 +144,8 @@ function CustomRevCard({ rev }) {
                 <div className="flex gap-4 pt-5">
                   {/* Like Button */}
                   <button
-                    className={`flex items-center gap-2 ${
-                      hasLiked ? "text-blue-500" : "text-gray-700"
-                    }`}
+                    className={`flex items-center gap-2 ${hasLiked ? "text-blue-500" : "text-gray-700"
+                      }`}
                     onClick={handleLike}
                   >
                     <FaThumbsUp className="text-xl" />
@@ -196,7 +195,7 @@ function CustomRevCard({ rev }) {
           </aside>
         </div>
       )}
-      
+
     </div>
   )
 }
