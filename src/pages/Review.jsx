@@ -74,7 +74,7 @@ function Review() {
         <section className='pb-10'>
           <div className='grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-4 gap-y-2 gap-x-3 '>
             {
-              reviewsShow.length > 0 ? reviewsShow.map((rev) => (
+              reviewsShow?.length > 0 ? reviewsShow.map((rev) => (
                 <CustomRevCard rev={rev} key={rev.id} onClick={(e) => handleReviewDisplay(e.target.id)} />
               ))
                 :
