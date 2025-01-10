@@ -132,7 +132,7 @@ const RevProvider = ({children}) =>{
             img:'https://cdn.pixabay.com/photo/2016/03/22/09/44/breakfast-1272462_960_720.jpg',
         }
     ]
-    // localStorage.setItem('reviews',JSON.stringify(demoReviews))
+    localStorage.setItem('reviews',JSON.stringify(demoReviews))
     const sotrredReviews = JSON.parse(localStorage.getItem('reviews'))
     const [reviews,setReviews] = useState(sotrredReviews);
     const [comments,setComments] = useState([]);
